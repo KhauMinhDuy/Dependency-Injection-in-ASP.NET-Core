@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = TennisBookings.Web
+build_property.ProjectDir = d:\ASP.NET Core\SourceCode\Dependency_Injection_in_ASP.NET_Core\src\TennisBookings.Web\
