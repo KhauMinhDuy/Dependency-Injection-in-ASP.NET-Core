@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using TennisBookings.Web.External.Models;
 using TennisBookings.Web.Services;
 using TennisBookings.Web.ViewModels;
@@ -7,13 +7,19 @@ namespace TennisBookings.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public IWeatherForecaster WeatherForecaster { get; }
+
+        public HomeController(IWeatherForecaster weatherForecaster)
+        {
+            this.WeatherForecaster = weatherForecaster;
+        }
+
         [Route("")]
         public IActionResult Index()
         {
             var viewModel = new HomeViewModel();
 
-            var weatherForecaster = new WeatherForecaster();
-            var currentWeather = weatherForecaster.GetCurrentWeather();
+            var currentWeather = WeatherForecaster.GetCurrentWeather();
 
             switch (currentWeather.WeatherCondition)
             {

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TennisBookings.Web.Controllers;
+using TennisBookings.Web.Services;
 using TennisBookings.Web.ViewModels;
 using Xunit;
 
@@ -7,10 +8,17 @@ namespace TennisBookings.Web.Tests.Controllers
 {
     public class HomeControllerTests
     {
+        public IWeatherForecaster WeatherForecaster { get; }
+
+        public HomeControllerTests(IWeatherForecaster weatherForecaster) 
+        {
+            this.WeatherForecaster = weatherForecaster;
+        }
+
         [Fact]
         public void ReturnsExpectedViewModel_WhenWeatherIsSun()
         {
-            var sut = new HomeController();
+            var sut = new HomeController(WeatherForecaster);
 
             var result = sut.Index();
 
@@ -22,7 +30,7 @@ namespace TennisBookings.Web.Tests.Controllers
         [Fact]
         public void ReturnsExpectedViewModel_WhenWeatherIsRain()
         {
-            var sut = new HomeController();
+            var sut = new HomeController(WeatherForecaster);
 
             var result = sut.Index();
 
