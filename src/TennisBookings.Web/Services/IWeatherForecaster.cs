@@ -1,7 +1,10 @@
+﻿using System.Threading.Tasks;
+using TennisBookings.Web.Domain;
+
 namespace TennisBookings.Web.Services
 {
     public interface IWeatherForecaster
     {
-        WeatherResult GetCurrentWeather();
+        Task<CurrentWeatherResult> GetCurrentWeatherAsync();
     }
 }
